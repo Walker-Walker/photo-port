@@ -3,10 +3,12 @@ import React, { useEffect } from "react";
 import { capitalizeFirstLetter } from "../../utils/helpers";
 
 function Nav(props) {
-  useEffect(() => {
+  
+  const { categories = [], setCurrentCategory, currentCategory } = props;
+    useEffect(() => {
     document.title = capitalizeFirstLetter(currentCategory.name);
   }, [currentCategory]);
-  const { categories = [], setCurrentCategory, currentCategory } = props;
+  
 
   return (
     <header>
