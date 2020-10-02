@@ -3,10 +3,12 @@ import Nav from "./components/Nav";
 import About from "./components/About";
 import Gallery from "./components/Gallery";
 import ContactForm from "./components/Contact"
+
 // import logo from './logo.svg';
 import "./App.css";
 
 function App() {
+  const [contactSelected, setContactSelected] = useState(false);
   const [categories] = useState([
    
       {
@@ -22,15 +24,24 @@ function App() {
 
   return (
     <div>
-      <Nav
-        categories={categories}
-        setCurrentCategory={setCurrentCategory}
-        currentCategory={currentCategory}
+     
+   <Nav 
+      categories={ categories }
+      setCurrentCategory={setCurrentCategory}
+      currentCategory={currentCategory}
+      contactSelected={contactSelected}
+      setContactSelected={setContactSelected}
       ></Nav>
       <main>
-        <ContactForm></ContactForm>
-          <Gallery currentCategory={currentCategory}></Gallery>
-          <About></About>
+       {!contactSelected ? (  // one big ternary expression 
+         <>
+         <Gallery currentCategory={currentCategory}></Gallery>
+         <About></About>
+         </> //react fragment allow multiple elements to be grouped together.
+       ) : (
+         <ContactForm></ContactForm>
+
+       )}
         
       </main>
     </div>
